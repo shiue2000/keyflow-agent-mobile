@@ -164,9 +164,9 @@ const seedData = {
   channelConnections: [
     {
       id: "line",
-      name: "LINE Official Account",
-      status: "Setup required",
-      detail: "Connect an Official Account through a secure backend and webhook.",
+      name: "LINE sharing & chat",
+      status: "Add profile",
+      detail: "Save your LINE profile, share it with clients, and open LINE with prepared text.",
       icon: "message",
     },
     {
@@ -177,6 +177,11 @@ const seedData = {
       icon: "users",
     },
   ],
+  lineProfile: {
+    displayName: "",
+    lineId: "",
+    profileUrl: "",
+  },
   automations: [
     {
       id: "instant-lead",
@@ -230,13 +235,14 @@ const seedData = {
   ],
 };
 
-function normalizeWorkspace(workspace) {
+function normalizeWorkspace(workspace, migrateLegacyDates = false) {
   const legacyDates = new Map([
     ["2026-10-29", todayKey],
     ["2026-10-30", tomorrowKey],
   ]);
   workspace.navigation = seedData.navigation;
-  workspace.channelConnections = workspace.channelConnections || seedData.channelConnections;
+  workspace.channelConnections = seedData.channelConnections;
+  workspace.lineProfile = { ...seedData.lineProfile, ...(workspace.lineProfile || {}) };
   workspace.automationSettings = { reviewMessages: true };
   workspace.automations = seedData.automations.map((definition) => ({
     ...definition,
@@ -250,7 +256,7 @@ function normalizeWorkspace(workspace) {
     drafts: lead.drafts || [],
     followUps: (lead.followUps || []).map((followUp) => ({
       ...followUp,
-      date: legacyDates.get(followUp.date) || followUp.date,
+      date: migrateLegacyDates ? (legacyDates.get(followUp.date) || followUp.date) : followUp.date,
     })),
   }));
   return workspace;
@@ -258,8 +264,10 @@ function normalizeWorkspace(workspace) {
 
 function loadWorkspace() {
   try {
-    const saved = window.localStorage.getItem("keyflow-workspace-v7") || window.localStorage.getItem("keyflow-workspace-v6");
-    if (saved) return normalizeWorkspace(JSON.parse(saved));
+    const current = window.localStorage.getItem("keyflow-workspace-v7");
+    if (current) return normalizeWorkspace(JSON.parse(current));
+    const legacy = window.localStorage.getItem("keyflow-workspace-v6");
+    if (legacy) return normalizeWorkspace(JSON.parse(legacy), true);
   } catch (error) {
     console.warn("Keyflow could not load saved workspace data.", error);
   }
@@ -292,6 +300,10 @@ function saveWorkspace() {
 
 function icon(name) {
   return `<svg aria-hidden="true"><use href="#icon-${name}"></use></svg>`;
+}
+
+function escapeHtml(value = "") {
+  return String(value).replace(/[&<>'"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[character]);
 }
 
 function getLead(id) {
@@ -520,11 +532,14 @@ function renderAutomationCard(automation) {
 }
 
 function renderChannelCard(connection) {
+  const lineReady = connection.id === "line" && Boolean(appData.lineProfile.profileUrl);
+  const status = lineReady ? "Sharing ready" : connection.status;
+  const detail = lineReady ? `${appData.lineProfile.displayName || "Your LINE profile"} is ready to share.` : connection.detail;
   return `
     <button class="channel-card" data-channel-info="${connection.id}">
       <span class="channel-logo ${connection.id}">${connection.id === "line" ? "LINE" : "IG"}</span>
-      <span class="channel-copy"><strong>${connection.name}</strong><small>${connection.detail}</small></span>
-      <span class="channel-status">${connection.status}</span>
+      <span class="channel-copy"><strong>${connection.name}</strong><small>${detail}</small></span>
+      <span class="channel-status ${lineReady ? "ready" : ""}">${status}</span>
       ${icon("arrow")}
     </button>`;
 }
@@ -539,7 +554,7 @@ function renderMore() {
       </div>
       <section class="automation-section">
         <div class="section-heading"><h2>Communication channels</h2><span class="mini-label">Secure setup</span></div>
-        <p class="section-copy">Connect business accounts here. Keyflow never claims access to a personal LINE or Instagram inbox.</p>
+        <p class="section-copy">Add your LINE profile for sharing, or connect approved business channels for tracked messaging.</p>
         <div class="channel-list">${appData.channelConnections.map(renderChannelCard).join("")}</div>
       </section>
       <section class="review-safety-card">
@@ -604,16 +619,19 @@ function renderFollowUpOutcomeSheet(lead, followUp) {
 
 function renderReplyDraftSheet(lead) {
   const firstName = lead.name.split(" ")[0];
-  return sheetFrame(`${sheetHeader("Prepare reply", lead.name)}<form id="reply-draft-form" class="form-grid"><input type="hidden" name="leadId" value="${lead.id}" /><label class="field"><span>Channel</span><select name="channel"><option ${lead.preferredChannel === "LINE" ? "selected" : ""}>LINE</option><option ${lead.preferredChannel === "Instagram" ? "selected" : ""}>Instagram</option><option ${lead.preferredChannel === "Phone" ? "selected" : ""}>Text</option><option ${lead.preferredChannel === "Email" ? "selected" : ""}>Email</option></select></label><label class="field"><span>Draft</span><textarea name="message" required>Hi ${firstName}, I wanted to follow up and make sure you have what you need. What would be most helpful next?</textarea></label><div class="connection-notice">${icon("shield")}<span><strong>This saves a draft only.</strong><small>Connect a business channel in More before Keyflow can deliver and track it.</small></span></div><button class="primary-button" type="submit">Save draft for review</button></form>`);
+  return sheetFrame(`${sheetHeader("Prepare reply", lead.name)}<form id="reply-draft-form" class="form-grid"><input type="hidden" name="leadId" value="${lead.id}" /><label class="field"><span>Channel</span><select name="channel"><option ${lead.preferredChannel === "LINE" ? "selected" : ""}>LINE</option><option ${lead.preferredChannel === "Instagram" ? "selected" : ""}>Instagram</option><option ${lead.preferredChannel === "Phone" ? "selected" : ""}>Text</option><option ${lead.preferredChannel === "Email" ? "selected" : ""}>Email</option></select></label><label class="field"><span>Draft</span><textarea name="message" required>Hi ${firstName}, I wanted to follow up and make sure you have what you need. What would be most helpful next?</textarea></label><div class="connection-notice">${icon("shield")}<span><strong>You stay in control.</strong><small>Save the draft in Keyflow or open LINE's Share with screen and choose the customer yourself.</small></span></div><div class="form-actions"><button class="secondary-button" type="button" data-share-line="${lead.id}">Open LINE share</button><button class="primary-button" type="submit">Save draft</button></div></form>`);
 }
 
 function renderChannelInfoSheet(connection) {
   const isLine = connection.id === "line";
-  const requirements = isLine
-    ? ["A LINE Official Account", "A secure webhook endpoint", "Account linking for existing clients"]
-    : ["An Instagram Business or Creator account", "Meta messaging permission and app review", "A customer-initiated conversation"];
-  const docsUrl = isLine ? "https://developers.line.biz/en/docs/messaging-api/overview/" : "https://www.postman.com/meta/instagram/documentation/6yqw8pt/instagram-api";
-  return sheetFrame(`${sheetHeader("Channel setup", connection.name)}<div class="channel-setup"><span class="channel-logo ${connection.id} large">${isLine ? "LINE" : "IG"}</span><h3>Secure backend connection required</h3><p>${connection.detail}</p><ul>${requirements.map((item) => `<li>${item}</li>`).join("")}</ul><a class="primary-button button-link" href="${docsUrl}" target="_blank" rel="noreferrer">Read official setup guide</a><p class="fine-print">Keyflow cannot access a personal ${isLine ? "LINE" : "Instagram"} inbox.</p></div>`);
+  if (isLine) {
+    const profile = appData.lineProfile;
+    const shareText = encodeURIComponent(`Add me on LINE: ${profile.profileUrl}`);
+    return sheetFrame(`${sheetHeader("LINE", "Add your LINE")}<form id="line-profile-form" class="form-grid"><div class="channel-setup-intro"><span class="channel-logo line large">LINE</span><div><h3>Share and talk with customers</h3><p>Save the profile link copied from LINE. Keyflow can then share your contact and open LINE with prepared text.</p></div></div><label class="field"><span>Display name</span><input name="displayName" value="${escapeHtml(profile.displayName)}" placeholder="Alex Morgan" required /></label><label class="field"><span>LINE ID</span><input name="lineId" value="${escapeHtml(profile.lineId)}" placeholder="Optional" /></label><label class="field"><span>Profile or add-friend link</span><input name="profileUrl" type="url" value="${escapeHtml(profile.profileUrl)}" placeholder="https://line.me/..." required /></label><div class="line-helper-links"><a href="https://line.me/R/nv/profile" target="_blank" rel="noreferrer">Open my LINE profile</a><a href="https://line.me/R/nv/addFriends" target="_blank" rel="noreferrer">Open Add friends</a></div><button class="primary-button" type="submit">Save LINE profile</button>${profile.profileUrl ? `<a class="secondary-button button-link" href="https://line.me/R/share?text=${shareText}" target="_blank" rel="noreferrer">Share my LINE with a customer</a>` : ""}<p class="fine-print">LINE asks you to choose the recipient and confirm every share. Keyflow cannot read your personal chats.</p></form>`);
+  }
+  const requirements = ["An Instagram Business or Creator account", "Meta messaging permission and app review", "A customer-initiated conversation"];
+  const docsUrl = "https://www.postman.com/meta/instagram/documentation/6yqw8pt/instagram-api";
+  return sheetFrame(`${sheetHeader("Channel setup", connection.name)}<div class="channel-setup"><span class="channel-logo ${connection.id} large">IG</span><h3>Secure backend connection required</h3><p>${connection.detail}</p><ul>${requirements.map((item) => `<li>${item}</li>`).join("")}</ul><a class="primary-button button-link" href="${docsUrl}" target="_blank" rel="noreferrer">Read official setup guide</a><p class="fine-print">Keyflow cannot access a personal Instagram inbox.</p></div>`);
 }
 
 function renderCaseDetailSheet(caseItem) {
@@ -667,6 +685,13 @@ document.addEventListener("click", (event) => {
   if (leadFilter) { state.leadFilter = leadFilter.dataset.leadFilter; return render(); }
   const caseFilter = target.closest("[data-case-filter]");
   if (caseFilter) { state.caseFilter = caseFilter.dataset.caseFilter; return render(); }
+  const lineShareButton = target.closest("[data-share-line]");
+  if (lineShareButton) {
+    const message = sheetRoot.querySelector('[name="message"]')?.value.trim();
+    if (!message) return showToast("Write a message before opening LINE");
+    window.open(`https://line.me/R/share?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    return showToast("LINE opened · choose the customer and confirm");
+  }
   const channelInfo = target.closest("[data-channel-info]");
   if (channelInfo) { state.sheet = { type: "channel-info", channelId: channelInfo.dataset.channelInfo }; return renderSheet(); }
   const replyButton = target.closest("[data-open-reply]");
@@ -756,6 +781,21 @@ document.addEventListener("submit", (event) => {
     state.sheet = { type: "lead-detail", leadId: lead.id };
     renderSheet();
     return showToast("Draft saved for review · not sent");
+  }
+  if (event.target.id === "line-profile-form") {
+    const profileUrl = form.get("profileUrl").trim();
+    if (!/^https:\/\/(line\.me|lin\.ee)\//i.test(profileUrl)) {
+      return showToast("Paste a valid line.me or lin.ee profile link");
+    }
+    appData.lineProfile = {
+      displayName: form.get("displayName").trim(),
+      lineId: form.get("lineId").trim(),
+      profileUrl,
+    };
+    saveWorkspace();
+    state.sheet = null;
+    render();
+    return showToast("LINE profile saved · sharing is ready");
   }
   if (event.target.id === "followup-outcome-form") {
     const lead = getLead(form.get("leadId"));

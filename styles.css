@@ -2121,6 +2121,11 @@ h3 {
   white-space: nowrap;
 }
 
+.channel-status.ready {
+  color: #176a38;
+  background: #dcf8e5;
+}
+
 .setup-badge.ready {
   color: var(--forest);
   background: #e9f6c9;
@@ -2155,6 +2160,71 @@ h3 {
 
 .connection-notice span {
   display: grid;
+}
+
+.form-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 11px 14px;
+  border: 1px solid var(--forest);
+  border-radius: 13px;
+  color: var(--forest);
+  background: transparent;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.channel-setup-intro {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  align-items: center;
+  gap: 13px;
+  padding: 12px;
+  border-radius: 18px;
+  background: #effbf2;
+}
+
+.channel-setup-intro .channel-logo.large {
+  margin: 0;
+}
+
+.channel-setup-intro h3,
+.channel-setup-intro p {
+  margin: 0;
+}
+
+.channel-setup-intro p {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.line-helper-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.line-helper-links a {
+  padding: 10px;
+  border-radius: 12px;
+  color: var(--forest);
+  background: #f1efe9;
+  font-size: 10px;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
 }
 
 .channel-setup {

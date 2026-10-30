@@ -17,7 +17,7 @@ Then open `http://localhost:4173`.
 - Today is a live-date action queue with overdue work and outcome capture.
 - Clients supports search, notes, scheduled follow-ups, phone links, reviewed reply drafts, and new client capture.
 - Cases track buyer, seller, and rental workflows with milestones, checklists, and activity notes.
-- More shows honest LINE Official Account and Instagram Professional setup requirements.
+- More lets an agent save and share their LINE profile, open LINE with prepared text, and see Instagram Professional setup requirements.
 - Local automations schedule new-client callbacks and post-showing follow-ups. Server-dependent workflows are labeled instead of simulated.
 
-The prototype saves workspace changes in local storage. Real messaging, scheduled server execution, authentication, and cross-device sync require a secure backend and approved channel credentials.
+The prototype saves workspace changes in local storage. LINE sharing uses LINE's official URL scheme and always asks the agent to choose and confirm a recipient. Automatic messaging, scheduled server execution, authentication, and cross-device sync require a secure backend and approved channel credentials.
