@@ -7,7 +7,7 @@ Keyflow is a mobile-first workspace for residential real estate agents. It puts 
 Open `index.html` directly, or serve the folder with any static web server.
 
 ```sh
-python3 -m http.server 4173 --directory keyflow-mobile-saas
+python3 -m http.server 4173
 ```
 
 Then open `http://localhost:4173`.
