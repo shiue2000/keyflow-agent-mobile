@@ -22,77 +22,134 @@ const seedData = {
   navigation: [
     { id: "today", label: "Today", icon: "home" },
     { id: "leads", label: "Clients", icon: "users" },
+    { id: "listings", label: "Listings", icon: "building" },
     { id: "cases", label: "Cases", icon: "briefcase" },
     { id: "more", label: "More", icon: "grid" },
   ],
   leads: [
     {
       id: 1,
-      name: "Maya Chen",
-      initials: "MC",
+      name: "Demo Buyer",
+      initials: "DB",
       stage: "Hot lead",
       stageKey: "hot",
       need: "Buying · 3 bed · $650–750k",
-      email: "maya.chen@example.com",
-      phone: "(312) 555-0138",
+      email: "",
+      phone: "",
       source: "Website inquiry",
       avatar: "#ffb891",
       notes: [
-        { id: 101, text: "Prefers North Center. A quiet street matters more than a larger yard.", createdAt: "Oct 28, 3:42 PM" },
-        { id: 102, text: "Pre-approval updated to $750k. Open to light renovation.", createdAt: "Oct 24, 11:10 AM" },
+        { id: 101, text: "Demo note: prioritize a quiet North Center block.", createdAt: "Oct 28, 3:42 PM" },
+        { id: 102, text: "Demo note: budget confirmed; light renovation is acceptable.", createdAt: "Oct 24, 11:10 AM" },
       ],
       followUps: [
-        { id: 201, type: "Call", date: todayKey, time: "10:30", note: "Review the Belle Plaine shortlist", done: false },
+        { id: 201, type: "Call", date: todayKey, time: "10:30", note: "Review the demo shortlist", done: false },
       ],
     },
     {
       id: 2,
-      name: "Ethan Brooks",
-      initials: "EB",
+      name: "Demo Renter",
+      initials: "DR",
       stage: "Viewing",
       stageKey: "viewing",
       need: "Renting · 2 bed · under $3k",
-      email: "ethan.b@example.com",
-      phone: "(773) 555-0162",
+      email: "",
+      phone: "",
       source: "Referral",
       avatar: "#c9c5ff",
-      notes: [{ id: 103, text: "Needs parking and a move-in date before November 15.", createdAt: "Oct 27, 9:05 AM" }],
+      notes: [{ id: 103, text: "Demo note: parking and a flexible move-in date are priorities.", createdAt: "Oct 27, 9:05 AM" }],
       followUps: [
-        { id: 202, type: "Showing", date: todayKey, time: "13:00", note: "410 N Carpenter St #5B", done: false },
+        { id: 202, type: "Showing", date: todayKey, time: "13:00", note: "West Loop demo loft", done: false },
       ],
     },
     {
       id: 3,
-      name: "Sofia & Luis",
-      initials: "SL",
+      name: "Demo Sellers",
+      initials: "DS",
       stage: "Nurture",
       stageKey: "nurture",
       need: "Selling · 4 bed · Oak Park",
-      email: "sofia.luis@example.com",
-      phone: "(708) 555-0144",
+      email: "",
+      phone: "",
       source: "Past client",
       avatar: "#9fd7f5",
-      notes: [{ id: 104, text: "Kitchen renovation completed in 2021. Collect contractor receipts.", createdAt: "Oct 25, 2:18 PM" }],
+      notes: [{ id: 104, text: "Demo note: collect renovation records before pricing review.", createdAt: "Oct 25, 2:18 PM" }],
       followUps: [
         { id: 203, type: "LINE", date: tomorrowKey, time: "09:00", note: "Send Oak Park market update", done: false },
       ],
     },
     {
       id: 4,
-      name: "Jordan Hale",
-      initials: "JH",
+      name: "Demo Lead",
+      initials: "DL",
       stage: "Hot lead",
       stageKey: "hot",
       need: "Buying · Condo · $450k",
-      email: "jordan.h@example.com",
-      phone: "(312) 555-0191",
+      email: "",
+      phone: "",
       source: "Open house",
       avatar: "#c8f75a",
-      notes: [{ id: 105, text: "Likes West Loop lofts. Avoid buildings with rental caps.", createdAt: "Oct 28, 5:25 PM" }],
+      notes: [{ id: 105, text: "Demo note: compare West Loop loft options.", createdAt: "Oct 28, 5:25 PM" }],
       followUps: [
         { id: 204, type: "Instagram", date: todayKey, time: "16:15", note: "Reply with three condo options", done: false },
       ],
     },
+  ],
+  properties: [
+    {
+      id: 1,
+      title: "North Center family home",
+      address: "North Center demo address",
+      district: "North Center",
+      transaction: "Sale",
+      price: 719000,
+      beds: 3,
+      baths: 2,
+      sqft: 1840,
+      status: "Active",
+      color: "#ffb891",
+      description: "Bright brick home on a quiet block with a finished lower level and updated kitchen.",
+      highlights: ["Quiet street", "Updated kitchen", "2-car garage"],
+      noticeHours: 2,
+      notes: "Demo access note: afternoon appointments preferred.",
+    },
+    {
+      id: 2,
+      title: "West Loop loft",
+      address: "West Loop demo address",
+      district: "West Loop",
+      transaction: "Rent",
+      price: 2850,
+      beds: 2,
+      baths: 2,
+      sqft: 1120,
+      status: "Active",
+      color: "#c9c5ff",
+      description: "Timber loft with tall ceilings, in-unit laundry, parking, and a November move-in date.",
+      highlights: ["Parking included", "In-unit laundry", "Pet friendly"],
+      noticeHours: 1,
+      notes: "Demo access note: meet at the lobby.",
+    },
+    {
+      id: 3,
+      title: "Oak Park classic",
+      address: "Oak Park demo address",
+      district: "Oak Park",
+      transaction: "Sale",
+      price: 890000,
+      beds: 4,
+      baths: 3,
+      sqft: 2680,
+      status: "Preparing",
+      color: "#9fd7f5",
+      description: "Seller listing in preparation with a renovated kitchen, original millwork, and generous yard.",
+      highlights: ["2021 kitchen", "Original millwork", "Large yard"],
+      noticeHours: 24,
+      notes: "Demo note: schedule photography after staging.",
+    },
+  ],
+  viewings: [
+    { id: 1, propertyId: 2, leadId: 2, date: todayKey, startTime: "13:00", endTime: "13:45", status: "Confirmed", notes: "Demo showing appointment." },
   ],
   cases: [
     {
@@ -114,7 +171,7 @@ const seedData = {
         { id: 304, label: "Prepare offer strategy", done: false },
       ],
       activity: [
-        { id: 401, text: "Shortlist shared with Maya", createdAt: "Oct 28, 4:10 PM" },
+        { id: 401, text: "Demo shortlist shared", createdAt: "Oct 28, 4:10 PM" },
         { id: 402, text: "Case created from qualified lead", createdAt: "Oct 24, 11:15 AM" },
       ],
     },
@@ -125,7 +182,7 @@ const seedData = {
       type: "Seller",
       stage: "Preparing",
       stageTone: "nurture",
-      property: "816 N Grove Ave · Oak Park",
+      property: "Oak Park demo address",
       value: "$890k estimate",
       progress: 28,
       nextMilestone: "Complete pricing review",
@@ -145,7 +202,7 @@ const seedData = {
       type: "Rental",
       stage: "Application",
       stageTone: "hot",
-      property: "410 N Carpenter St #5B",
+      property: "West Loop demo address",
       value: "$2,850/mo",
       progress: 74,
       nextMilestone: "Submit application package",
@@ -229,9 +286,9 @@ const seedData = {
     },
   ],
   automationRuns: [
-    { id: 1, icon: "message", title: "Showing follow-up drafted", detail: "Ethan Brooks · Review before send", time: "8:42 AM" },
-    { id: 2, icon: "calendar", title: "Callback scheduled", detail: "Jordan Hale · Today at 4:15 PM", time: "Yesterday" },
-    { id: 3, icon: "zap", title: "New client workflow completed", detail: "Maya Chen · callback created", time: "Oct 28" },
+    { id: 1, icon: "message", title: "Showing follow-up drafted", detail: "Demo Renter · Review before send", time: "8:42 AM" },
+    { id: 2, icon: "calendar", title: "Callback scheduled", detail: "Demo Lead · Today at 4:15 PM", time: "Yesterday" },
+    { id: 3, icon: "zap", title: "New client workflow completed", detail: "Demo Buyer · callback created", time: "Oct 28" },
   ],
 };
 
@@ -241,6 +298,15 @@ function normalizeWorkspace(workspace, migrateLegacyDates = false) {
     ["2026-10-30", tomorrowKey],
   ]);
   workspace.navigation = seedData.navigation;
+  workspace.properties = (workspace.properties || seedData.properties).map((property, index) => ({
+    ...seedData.properties[index % seedData.properties.length],
+    ...property,
+    highlights: property.highlights || [],
+  }));
+  workspace.viewings = (workspace.viewings || seedData.viewings).map((viewing) => ({
+    ...viewing,
+    date: migrateLegacyDates ? (legacyDates.get(viewing.date) || viewing.date) : viewing.date,
+  }));
   workspace.channelConnections = seedData.channelConnections;
   workspace.lineProfile = { ...seedData.lineProfile, ...(workspace.lineProfile || {}) };
   workspace.automationSettings = { reviewMessages: true };
@@ -264,10 +330,12 @@ function normalizeWorkspace(workspace, migrateLegacyDates = false) {
 
 function loadWorkspace() {
   try {
-    const current = window.localStorage.getItem("keyflow-workspace-v7");
+    const current = window.localStorage.getItem("keyflow-workspace-v8");
     if (current) return normalizeWorkspace(JSON.parse(current));
-    const legacy = window.localStorage.getItem("keyflow-workspace-v6");
-    if (legacy) return normalizeWorkspace(JSON.parse(legacy), true);
+    const versionSeven = window.localStorage.getItem("keyflow-workspace-v7");
+    if (versionSeven) return normalizeWorkspace(JSON.parse(versionSeven));
+    const versionSix = window.localStorage.getItem("keyflow-workspace-v6");
+    if (versionSix) return normalizeWorkspace(JSON.parse(versionSix), true);
   } catch (error) {
     console.warn("Keyflow could not load saved workspace data.", error);
   }
@@ -278,6 +346,7 @@ const appData = loadWorkspace();
 const state = {
   activeView: "today",
   leadFilter: "all",
+  listingFilter: "all",
   caseFilter: "all",
   leadQuery: "",
   sheet: null,
@@ -292,7 +361,7 @@ document.body.insertAdjacentHTML("afterbegin", document.querySelector("#icon-spr
 
 function saveWorkspace() {
   try {
-    window.localStorage.setItem("keyflow-workspace-v7", JSON.stringify(appData));
+    window.localStorage.setItem("keyflow-workspace-v8", JSON.stringify(appData));
   } catch (error) {
     console.warn("Keyflow could not save workspace data.", error);
   }
@@ -312,6 +381,14 @@ function getLead(id) {
 
 function getCase(id) {
   return appData.cases.find((caseItem) => caseItem.id === Number(id));
+}
+
+function getProperty(id) {
+  return appData.properties.find((property) => property.id === Number(id));
+}
+
+function getViewing(id) {
+  return appData.viewings.find((viewing) => viewing.id === Number(id));
 }
 
 function getAutomation(id) {
@@ -379,6 +456,21 @@ function formatTime(timeString) {
   return new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit" }).format(date);
 }
 
+function formatPrice(property) {
+  const amount = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(property.price);
+  return property.transaction === "Rent" ? `$${amount}/mo` : `$${amount}`;
+}
+
+function viewingConflict(date, startTime, endTime) {
+  const toMinutes = (value) => value.split(":").map(Number).reduce((hours, minutes) => hours * 60 + minutes);
+  const proposedStart = toMinutes(startTime) - 30;
+  const proposedEnd = toMinutes(endTime) + 30;
+  return appData.viewings.find((viewing) => {
+    if (viewing.date !== date || viewing.status === "Cancelled") return false;
+    return proposedStart < toMinutes(viewing.endTime) && proposedEnd > toMinutes(viewing.startTime);
+  });
+}
+
 function allFollowUps() {
   return appData.leads
     .flatMap((lead) => lead.followUps.map((followUp) => ({ ...followUp, lead })))
@@ -428,7 +520,7 @@ function renderToday() {
       <div class="quick-grid" aria-label="Quick actions">
         <button class="quick-action" data-open-sheet="new-lead"><span class="mini-icon">${icon("plus")}</span>New client</button>
         <button class="quick-action" data-open-sheet="schedule-followup"><span class="mini-icon">${icon("calendar")}</span>Follow-up</button>
-        <button class="quick-action" data-view="more"><span class="mini-icon">${icon("message")}</span>Channels</button>
+        <button class="quick-action" data-open-sheet="schedule-showing"><span class="mini-icon">${icon("building")}</span>Showing</button>
       </div>
       <button class="automation-glance" data-view="more">
         <span class="automation-glance-icon">${icon("zap")}</span>
@@ -481,6 +573,51 @@ function renderLeads() {
       <div class="chip-row" aria-label="Lead status filters">${filters.map(([id, label]) => `<button class="chip ${state.leadFilter === id ? "active" : ""}" data-lead-filter="${id}">${label}</button>`).join("")}</div>
       <div class="lead-list">${filteredLeads.length ? filteredLeads.map(renderLeadCard).join("") : `<div class="empty-state"><h3>No matching leads</h3><p>Try a different search or status.</p></div>`}</div>
       <button class="floating-add" data-open-sheet="new-lead">${icon("plus")} Add client</button>
+    </div>`;
+}
+
+function renderPropertyCard(property) {
+  const nextViewing = appData.viewings
+    .filter((viewing) => viewing.propertyId === property.id && viewing.status !== "Cancelled" && viewing.date >= todayKey)
+    .sort((a, b) => `${a.date} ${a.startTime}`.localeCompare(`${b.date} ${b.startTime}`))[0];
+  return `
+    <article class="property-card">
+      <button class="property-card-main" data-open-property="${property.id}">
+        <span class="property-visual" style="--property-color:${property.color}">${icon("building")}<small>${property.transaction}</small></span>
+        <span class="property-copy">
+          <span class="property-card-head"><span class="tag ${property.status === "Active" ? "viewing" : "nurture"}">${property.status}</span><strong>${formatPrice(property)}</strong></span>
+          <b>${escapeHtml(property.title)}</b>
+          <small>${escapeHtml(property.address)} · ${property.district}</small>
+          <span>${property.beds} bd · ${property.baths} ba · ${Number(property.sqft).toLocaleString()} sq ft</span>
+        </span>
+      </button>
+      <div class="property-card-actions">
+        <button data-property-share="${property.id}">${icon("message")} LINE pack</button>
+        <button class="primary" data-schedule-showing="${property.id}">${icon("calendar")} ${nextViewing ? `${formatDateLabel(nextViewing.date)} ${formatTime(nextViewing.startTime)}` : "Book showing"}</button>
+      </div>
+    </article>`;
+}
+
+function renderListings() {
+  const filteredProperties = appData.properties.filter((property) => {
+    if (state.listingFilter === "all") return true;
+    if (state.listingFilter === "active") return property.status === "Active";
+    return property.transaction.toLowerCase() === state.listingFilter;
+  });
+  const upcoming = appData.viewings
+    .filter((viewing) => viewing.status !== "Cancelled" && viewing.date >= todayKey)
+    .sort((a, b) => `${a.date} ${a.startTime}`.localeCompare(`${b.date} ${b.startTime}`));
+  const filters = [["all", "All"], ["active", "Active"], ["sale", "For sale"], ["rent", "For rent"]];
+  return `
+    <div class="screen">
+      <div class="screen-title-row"><div><p class="eyebrow">Inventory</p><h1>Listings</h1></div><span class="count-pill">${appData.properties.length} properties</span></div>
+      <section class="listing-glance">
+        <div><span>${icon("calendar")}</span><strong>${upcoming.length}</strong><small>upcoming showings</small></div>
+        <button data-open-sheet="schedule-showing">View schedule ${icon("arrow")}</button>
+      </section>
+      <div class="chip-row" aria-label="Listing filters">${filters.map(([id, label]) => `<button class="chip ${state.listingFilter === id ? "active" : ""}" data-listing-filter="${id}">${label}</button>`).join("")}</div>
+      <div class="property-list">${filteredProperties.length ? filteredProperties.map(renderPropertyCard).join("") : `<div class="empty-state"><h3>No matching listings</h3><p>Add a property or change the filter.</p></div>`}</div>
+      <button class="floating-add" data-open-sheet="edit-property">${icon("plus")} Add property</button>
     </div>`;
 }
 
@@ -573,7 +710,7 @@ function renderMore() {
     </div>`;
 }
 
-const viewRenderers = { today: renderToday, leads: renderLeads, cases: renderCases, more: renderMore };
+const viewRenderers = { today: renderToday, leads: renderLeads, listings: renderListings, cases: renderCases, more: renderMore };
 
 function renderNavigation() {
   bottomNav.innerHTML = appData.navigation.map((item) => `<button class="nav-item ${state.activeView === item.id ? "active" : ""}" data-view="${item.id}" aria-current="${state.activeView === item.id ? "page" : "false"}">${icon(item.icon)}<span>${item.label}</span></button>`).join("");
@@ -595,7 +732,7 @@ function sheetHeader(eyebrow, title) {
 }
 
 function renderNewLeadSheet() {
-  return sheetFrame(`${sheetHeader("Relationships", "Add a new client")}<form id="new-lead-form" class="form-grid"><label class="field"><span>Name</span><input name="name" required placeholder="Client name" /></label><label class="field"><span>Interested in</span><select name="interest"><option>Buying</option><option>Selling</option><option>Renting</option><option>Past client</option></select></label><div class="form-row"><label class="field"><span>Phone</span><input name="phone" placeholder="(312) 555-0123" /></label><label class="field"><span>Source</span><input name="source" placeholder="Referral" /></label></div><label class="field"><span>Preferred channel</span><select name="preferredChannel"><option>Phone</option><option>LINE</option><option>Instagram</option><option>Email</option></select></label><label class="field"><span>First note</span><textarea name="note" placeholder="Budget, timing, preferences…"></textarea></label><button class="primary-button" type="submit">Add client</button></form>`);
+  return sheetFrame(`${sheetHeader("Relationships", "Add a new client")}<form id="new-lead-form" class="form-grid"><label class="field"><span>Name</span><input name="name" required placeholder="Client name" /></label><label class="field"><span>Interested in</span><select name="interest"><option>Buying</option><option>Selling</option><option>Renting</option><option>Past client</option></select></label><div class="form-row"><label class="field"><span>Phone</span><input name="phone" placeholder="Optional phone" /></label><label class="field"><span>Source</span><input name="source" placeholder="Referral" /></label></div><label class="field"><span>Preferred channel</span><select name="preferredChannel"><option>Phone</option><option>LINE</option><option>Instagram</option><option>Email</option></select></label><label class="field"><span>First note</span><textarea name="note" placeholder="Budget, timing, preferences…"></textarea></label><button class="primary-button" type="submit">Add client</button></form>`);
 }
 
 function renderFollowUpSheet(leadId) {
@@ -605,6 +742,28 @@ function renderFollowUpSheet(leadId) {
 
 function renderNewCaseSheet() {
   return sheetFrame(`${sheetHeader("Workflow", "Create a case")}<form id="new-case-form" class="form-grid"><label class="field"><span>Case name</span><input name="title" required placeholder="Client home search" /></label><div class="form-row"><label class="field"><span>Client</span><select name="clientId">${appData.leads.map((lead) => `<option value="${lead.id}">${lead.name}</option>`).join("")}</select></label><label class="field"><span>Type</span><select name="type"><option>Buyer</option><option>Seller</option><option>Rental</option></select></label></div><label class="field"><span>Property or area</span><input name="property" required placeholder="Neighborhood or address" /></label><label class="field"><span>First milestone</span><input name="milestone" required placeholder="Confirm client requirements" /></label><button class="primary-button" type="submit">Create case</button></form>`);
+}
+
+function renderPropertyFormSheet(property) {
+  const value = property || { title: "", address: "", district: "", transaction: "Sale", price: "", beds: 2, baths: 2, sqft: "", status: "Active", description: "", highlights: [], noticeHours: 2, notes: "", color: "#c8f75a" };
+  return sheetFrame(`${sheetHeader(property ? "Listing workspace" : "Inventory", property ? "Edit property" : "Add property")}<form id="property-form" class="form-grid"><input type="hidden" name="propertyId" value="${property?.id || ""}" /><label class="field"><span>Listing title</span><input name="title" value="${escapeHtml(value.title)}" required placeholder="North Center family home" /></label><label class="field"><span>Address</span><input name="address" value="${escapeHtml(value.address)}" required placeholder="Street address" /></label><div class="form-row"><label class="field"><span>Area</span><input name="district" value="${escapeHtml(value.district)}" required placeholder="Neighborhood" /></label><label class="field"><span>Offer type</span><select name="transaction"><option ${value.transaction === "Sale" ? "selected" : ""}>Sale</option><option ${value.transaction === "Rent" ? "selected" : ""}>Rent</option></select></label></div><div class="form-row"><label class="field"><span>Price</span><input name="price" type="number" min="0" value="${value.price}" required /></label><label class="field"><span>Status</span><select name="status"><option ${value.status === "Active" ? "selected" : ""}>Active</option><option ${value.status === "Preparing" ? "selected" : ""}>Preparing</option><option ${value.status === "Pending" ? "selected" : ""}>Pending</option><option ${value.status === "Closed" ? "selected" : ""}>Closed</option></select></label></div><div class="form-triple"><label class="field"><span>Beds</span><input name="beds" type="number" min="0" value="${value.beds}" /></label><label class="field"><span>Baths</span><input name="baths" type="number" min="0" step="0.5" value="${value.baths}" /></label><label class="field"><span>Sq ft</span><input name="sqft" type="number" min="0" value="${value.sqft}" /></label></div><label class="field"><span>Description</span><textarea name="description" required placeholder="What should a buyer or renter know?">${escapeHtml(value.description)}</textarea></label><label class="field"><span>Highlights</span><input name="highlights" value="${escapeHtml(value.highlights.join(", "))}" placeholder="Parking, renovated kitchen, quiet street" /></label><div class="form-row"><label class="field"><span>Showing notice</span><select name="noticeHours"><option value="1" ${value.noticeHours === 1 ? "selected" : ""}>1 hour</option><option value="2" ${value.noticeHours === 2 ? "selected" : ""}>2 hours</option><option value="24" ${value.noticeHours === 24 ? "selected" : ""}>24 hours</option><option value="48" ${value.noticeHours === 48 ? "selected" : ""}>48 hours</option></select></label><label class="field"><span>Private note</span><input name="notes" value="${escapeHtml(value.notes)}" placeholder="Access instructions" /></label></div><button class="primary-button" type="submit">${property ? "Save changes" : "Add property"}</button></form>`).replace('class="sheet"', 'class="sheet detail-sheet"');
+}
+
+function renderScheduleShowingSheet(propertyId) {
+  const selectedProperty = propertyId || appData.properties[0]?.id;
+  const upcoming = appData.viewings.filter((viewing) => viewing.status !== "Cancelled" && viewing.date >= todayKey).sort((a, b) => `${a.date} ${a.startTime}`.localeCompare(`${b.date} ${b.startTime}`));
+  return sheetFrame(`${sheetHeader("Showing calendar", "Book a showing")}<form id="showing-form" class="form-grid"><label class="field"><span>Property</span><select name="propertyId">${appData.properties.filter((property) => property.status !== "Closed").map((property) => `<option value="${property.id}" ${property.id === selectedProperty ? "selected" : ""}>${escapeHtml(property.title)} · ${formatPrice(property)}</option>`).join("")}</select></label><label class="field"><span>Client</span><select name="leadId">${appData.leads.map((lead) => `<option value="${lead.id}">${escapeHtml(lead.name)}</option>`).join("")}</select></label><div class="form-row"><label class="field"><span>Date</span><input name="date" type="date" min="${todayKey}" value="${tomorrowKey}" required /></label><label class="field"><span>Start</span><input name="startTime" type="time" value="10:00" required /></label></div><div class="form-row"><label class="field"><span>End</span><input name="endTime" type="time" value="10:45" required /></label><label class="field"><span>Status</span><select name="status"><option>Planned</option><option>Confirmed</option></select></label></div><label class="field"><span>Agent note</span><textarea name="notes" placeholder="Meeting point, access, what the client wants to check…"></textarea></label><button class="primary-button" type="submit">Check schedule & book</button></form>${upcoming.length ? `<section class="sheet-schedule"><div class="section-heading"><h3>Upcoming</h3><span class="mini-label">30-min travel buffer</span></div>${upcoming.slice(0, 3).map((viewing) => { const property = getProperty(viewing.propertyId); const lead = getLead(viewing.leadId); return `<div class="schedule-row"><span>${formatDateLabel(viewing.date)}<b>${formatTime(viewing.startTime)}</b></span><div><strong>${escapeHtml(property?.title || "Property")}</strong><small>${escapeHtml(lead?.name || "Client")} · ${viewing.status}</small></div></div>`; }).join("")}</section>` : ""}`).replace('class="sheet"', 'class="sheet detail-sheet"');
+}
+
+function renderPropertyDetailSheet(property) {
+  const viewings = appData.viewings.filter((viewing) => viewing.propertyId === property.id && viewing.status !== "Cancelled" && viewing.date >= todayKey).sort((a, b) => `${a.date} ${a.startTime}`.localeCompare(`${b.date} ${b.startTime}`));
+  return sheetFrame(`${sheetHeader(property.transaction === "Rent" ? "Rental listing" : "Sale listing", property.title)}<div class="property-detail-hero" style="--property-color:${property.color}"><span>${icon("building")}<small>${property.status}</small></span><div><strong>${formatPrice(property)}</strong><p>${escapeHtml(property.address)} · ${property.district}</p><small>${property.beds} bd · ${property.baths} ba · ${Number(property.sqft).toLocaleString()} sq ft</small></div></div><div class="detail-contact-row property-detail-actions"><button data-edit-property="${property.id}">${icon("briefcase")} Edit</button><button data-property-share="${property.id}">${icon("message")} LINE pack</button><button data-schedule-showing="${property.id}">${icon("calendar")} Showing</button></div><section class="detail-section"><div class="section-heading"><h3>Client-ready details</h3><span class="mini-label">${property.highlights.length} highlights</span></div><p class="property-description">${escapeHtml(property.description)}</p><div class="highlight-list">${property.highlights.map((item) => `<span>${icon("check")}${escapeHtml(item)}</span>`).join("")}</div></section><section class="detail-section"><div class="section-heading"><h3>Showing plan</h3><span class="mini-label">${property.noticeHours}h notice</span></div><p class="private-property-note">${icon("shield")}<span><strong>Agent only</strong>${escapeHtml(property.notes || "No private notes yet.")}</span></p>${viewings.length ? `<div class="note-list">${viewings.map((viewing) => `<div class="note-item"><p><strong>${formatDateLabel(viewing.date)} at ${formatTime(viewing.startTime)}</strong> · ${escapeHtml(getLead(viewing.leadId)?.name || "Client")}</p><time>${viewing.status}</time></div>`).join("")}</div>` : `<div class="empty-inline">No upcoming showings.</div>`}</section>`).replace('class="sheet"', 'class="sheet detail-sheet"');
+}
+
+function renderPropertyShareSheet(property) {
+  const firstLead = appData.leads[0];
+  const message = `Hi ${firstLead?.name.split(" ")[0] || "there"}, I found a property you may want to see:\n\n${property.title}\n${property.address}, ${property.district}\n${formatPrice(property)} · ${property.beds} bd · ${property.baths} ba · ${Number(property.sqft).toLocaleString()} sq ft\n\n${property.highlights.map((item) => `• ${item}`).join("\n")}\n\nWould you like me to arrange a showing?`;
+  return sheetFrame(`${sheetHeader("LINE property pack", property.title)}<form id="property-share-form" class="form-grid"><input type="hidden" name="propertyId" value="${property.id}" /><label class="field"><span>Customer</span><select name="leadId">${appData.leads.map((lead) => `<option value="${lead.id}">${escapeHtml(lead.name)} · ${lead.preferredChannel}</option>`).join("")}</select></label><label class="field"><span>Review message</span><textarea name="message" rows="10" required>${escapeHtml(message)}</textarea></label><div class="connection-notice">${icon("shield")}<span><strong>You approve every share.</strong><small>Keyflow opens LINE's official share screen; you choose the customer and confirm.</small></span></div><div class="form-actions"><button class="secondary-button" type="submit" name="action" value="save">Save draft</button><button class="primary-button" type="button" data-open-property-line>Open LINE</button></div></form>`).replace('class="sheet"', 'class="sheet detail-sheet"');
 }
 
 function renderLeadDetailSheet(lead) {
@@ -648,6 +807,10 @@ function renderSheet() {
     "new-lead": renderNewLeadSheet,
     "schedule-followup": () => renderFollowUpSheet(state.sheet.leadId),
     "new-case": renderNewCaseSheet,
+    "edit-property": () => renderPropertyFormSheet(state.sheet.propertyId ? getProperty(state.sheet.propertyId) : null),
+    "property-detail": () => renderPropertyDetailSheet(getProperty(state.sheet.propertyId)),
+    "property-share": () => renderPropertyShareSheet(getProperty(state.sheet.propertyId)),
+    "schedule-showing": () => renderScheduleShowingSheet(state.sheet.propertyId),
     "lead-detail": () => renderLeadDetailSheet(getLead(state.sheet.leadId)),
     "case-detail": () => renderCaseDetailSheet(getCase(state.sheet.caseId)),
     "followup-outcome": () => renderFollowUpOutcomeSheet(getLead(state.sheet.leadId), getLead(state.sheet.leadId).followUps.find((item) => item.id === state.sheet.followUpId)),
@@ -685,6 +848,15 @@ document.addEventListener("click", (event) => {
   if (leadFilter) { state.leadFilter = leadFilter.dataset.leadFilter; return render(); }
   const caseFilter = target.closest("[data-case-filter]");
   if (caseFilter) { state.caseFilter = caseFilter.dataset.caseFilter; return render(); }
+  const listingFilter = target.closest("[data-listing-filter]");
+  if (listingFilter) { state.listingFilter = listingFilter.dataset.listingFilter; return render(); }
+  const openPropertyLine = target.closest("[data-open-property-line]");
+  if (openPropertyLine) {
+    const message = sheetRoot.querySelector('[name="message"]')?.value.trim();
+    if (!message) return showToast("Review the property message first");
+    window.open(`https://line.me/R/share?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    return showToast("LINE opened · choose the customer and confirm");
+  }
   const lineShareButton = target.closest("[data-share-line]");
   if (lineShareButton) {
     const message = sheetRoot.querySelector('[name="message"]')?.value.trim();
@@ -706,6 +878,14 @@ document.addEventListener("click", (event) => {
   }
   const openLead = target.closest("[data-open-lead]");
   if (openLead) { state.sheet = { type: "lead-detail", leadId: Number(openLead.dataset.openLead) }; return renderSheet(); }
+  const openProperty = target.closest("[data-open-property]");
+  if (openProperty) { state.sheet = { type: "property-detail", propertyId: Number(openProperty.dataset.openProperty) }; return renderSheet(); }
+  const editProperty = target.closest("[data-edit-property]");
+  if (editProperty) { state.sheet = { type: "edit-property", propertyId: Number(editProperty.dataset.editProperty) }; return renderSheet(); }
+  const propertyShare = target.closest("[data-property-share]");
+  if (propertyShare) { state.sheet = { type: "property-share", propertyId: Number(propertyShare.dataset.propertyShare) }; return renderSheet(); }
+  const scheduleShowing = target.closest("[data-schedule-showing]");
+  if (scheduleShowing) { state.sheet = { type: "schedule-showing", propertyId: Number(scheduleShowing.dataset.scheduleShowing) }; return renderSheet(); }
   const openCase = target.closest("[data-open-case]");
   if (openCase) { state.sheet = { type: "case-detail", caseId: Number(openCase.dataset.openCase) }; return renderSheet(); }
   const scheduleButton = target.closest("[data-schedule-for]");
@@ -796,6 +976,58 @@ document.addEventListener("submit", (event) => {
     state.sheet = null;
     render();
     return showToast("LINE profile saved · sharing is ready");
+  }
+  if (event.target.id === "property-form") {
+    const propertyId = Number(form.get("propertyId"));
+    const propertyData = {
+      title: form.get("title").trim(),
+      address: form.get("address").trim(),
+      district: form.get("district").trim(),
+      transaction: form.get("transaction"),
+      price: Number(form.get("price")),
+      beds: Number(form.get("beds")),
+      baths: Number(form.get("baths")),
+      sqft: Number(form.get("sqft")),
+      status: form.get("status"),
+      description: form.get("description").trim(),
+      highlights: form.get("highlights").split(",").map((item) => item.trim()).filter(Boolean),
+      noticeHours: Number(form.get("noticeHours")),
+      notes: form.get("notes").trim(),
+    };
+    if (propertyId) {
+      Object.assign(getProperty(propertyId), propertyData);
+    } else {
+      appData.properties.unshift({ id: nextId(appData.properties), color: ["#c8f75a", "#ffb891", "#c9c5ff", "#9fd7f5"][appData.properties.length % 4], ...propertyData });
+    }
+    saveWorkspace(); state.sheet = null; state.activeView = "listings"; render();
+    return showToast(propertyId ? "Property updated" : "Property added to inventory");
+  }
+  if (event.target.id === "showing-form") {
+    const property = getProperty(form.get("propertyId"));
+    const lead = getLead(form.get("leadId"));
+    const date = form.get("date");
+    const startTime = form.get("startTime");
+    const endTime = form.get("endTime");
+    if (endTime <= startTime) return showToast("End time must be after start time");
+    const conflict = viewingConflict(date, startTime, endTime);
+    if (conflict) {
+      const conflictProperty = getProperty(conflict.propertyId);
+      return showToast(`Schedule conflict · ${conflictProperty?.title || "another showing"} at ${formatTime(conflict.startTime)}`);
+    }
+    appData.viewings.push({ id: nextId(appData.viewings), propertyId: property.id, leadId: lead.id, date, startTime, endTime, status: form.get("status"), notes: form.get("notes").trim() });
+    lead.followUps.push({ id: nextId(lead.followUps), type: "Showing", date, time: startTime, note: property.address, propertyId: property.id, done: false });
+    lead.stage = "Viewing";
+    lead.stageKey = "viewing";
+    logAutomation("showing-followup", "Showing workflow scheduled", `${lead.name} · ${property.title}`);
+    saveWorkspace(); state.sheet = null; state.activeView = "today"; render();
+    return showToast("Showing booked · follow-up added to the queue");
+  }
+  if (event.target.id === "property-share-form") {
+    const lead = getLead(form.get("leadId"));
+    const property = getProperty(form.get("propertyId"));
+    lead.drafts.unshift({ id: Date.now(), channel: "LINE", text: form.get("message").trim(), status: "ready", createdAt: "Just now", propertyId: property.id });
+    saveWorkspace(); state.sheet = { type: "lead-detail", leadId: lead.id }; renderSheet();
+    return showToast("Property pack saved for review · not sent");
   }
   if (event.target.id === "followup-outcome-form") {
     const lead = getLead(form.get("leadId"));
