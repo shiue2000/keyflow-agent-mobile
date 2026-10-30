@@ -1,6 +1,6 @@
 # Keyflow mobile SaaS
 
-Keyflow is a mobile-first workspace for residential real estate agents. It puts today's follow-ups before pipeline reporting so an agent can contact a lead and schedule the next step without hunting through a CRM.
+Keyflow is a mobile-first workspace for residential real estate agents. It puts today's client actions before pipeline reporting so an agent can contact a client, record the outcome, and schedule the next step without hunting through a CRM.
 
 ## Run it
 
@@ -14,10 +14,10 @@ Then open `http://localhost:4173`.
 
 ## Product shape
 
-- Today is a follow-up queue with completion tracking.
-- Leads supports search, notes, scheduled follow-ups, calls, messages, and new lead capture.
+- Today is a live-date action queue with overdue work and outcome capture.
+- Clients supports search, notes, scheduled follow-ups, phone links, reviewed reply drafts, and new client capture.
 - Cases track buyer, seller, and rental workflows with milestones, checklists, and activity notes.
-- Automate provides ready-made lead, showing, seller, and milestone workflows with review-before-send controls.
-- Listings tracks inventory, saved properties, and case assignment.
+- More shows honest LINE Official Account and Instagram Professional setup requirements.
+- Local automations schedule new-client callbacks and post-showing follow-ups. Server-dependent workflows are labeled instead of simulated.
 
-The prototype saves workspace changes in local storage. The view registry maps each bottom navigation item to one renderer.
+The prototype saves workspace changes in local storage. Real messaging, scheduled server execution, authentication, and cross-device sync require a secure backend and approved channel credentials.

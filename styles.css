@@ -453,7 +453,7 @@ h3 {
   bottom: 9px;
   left: 10px;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   align-items: center;
   min-height: 74px;
   padding: 7px 4px 9px;
@@ -1474,7 +1474,8 @@ h3 {
   margin: 10px 0 22px;
 }
 
-.detail-contact-row button {
+.detail-contact-row button,
+.detail-contact-row a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1487,6 +1488,7 @@ h3 {
   cursor: pointer;
   font-size: 10px;
   font-weight: 800;
+  text-decoration: none;
 }
 
 .detail-contact-row svg {
@@ -2027,6 +2029,172 @@ h3 {
 .automation-run time {
   color: var(--muted);
   font-size: 8px;
+}
+
+.section-copy {
+  margin: 8px 0 12px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.channel-list {
+  display: grid;
+  gap: 10px;
+}
+
+.channel-card {
+  display: grid;
+  grid-template-columns: 44px 1fr auto 18px;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  color: inherit;
+  background: var(--card);
+  cursor: pointer;
+  text-align: left;
+}
+
+.channel-card > svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 2;
+}
+
+.channel-logo {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.channel-logo.line {
+  background: #06c755;
+}
+
+.channel-logo.instagram {
+  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+}
+
+.channel-logo.large {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 14px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.channel-copy {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.channel-copy strong {
+  font-size: 12px;
+}
+
+.channel-copy small {
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.channel-status,
+.setup-badge {
+  padding: 5px 7px;
+  border-radius: 999px;
+  color: #80572e;
+  background: #fff0d7;
+  font-size: 8px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.setup-badge.ready {
+  color: var(--forest);
+  background: #e9f6c9;
+}
+
+.outcome-context,
+.connection-notice {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 16px;
+  background: #f1efe9;
+}
+
+.outcome-context p,
+.connection-notice small {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.connection-notice > svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: var(--forest);
+  stroke-width: 2;
+}
+
+.connection-notice span {
+  display: grid;
+}
+
+.channel-setup {
+  padding: 8px 4px 4px;
+  text-align: center;
+}
+
+.channel-setup > p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.channel-setup ul {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.channel-setup li {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #f1efe9;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.fine-print {
+  margin-top: 14px;
+  font-size: 9px !important;
 }
 
 @media (min-width: 600px) and (min-height: 760px) {
